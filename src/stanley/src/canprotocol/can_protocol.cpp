@@ -1,7 +1,7 @@
 #include "canprotocol/can_protocol.hpp"
 
 CANSender::CANSender(const std::string& dbc_file, const std::string& can_interface) {
-    setupVcanInterface(can_interface);
+    // setupVcanInterface(can_interface);
 
     std::ifstream idbc(dbc_file);
     this->net = dbcppp::INetwork::LoadDBCFromIs(idbc);

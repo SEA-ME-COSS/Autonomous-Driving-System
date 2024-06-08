@@ -22,12 +22,12 @@ PathPlanning::PathPlanning() : rclcpp::Node("path_planning") {
 
     // Select Using Messages
     // CHECK 5 vector initialization is needed
-    this->use_sign = false;
+    this->use_sign = true;
     this->use_pose = false;
     
     // Decision Making Initialization
     VehicleState current_state = VehicleState::Driving;
-    this->normal_throttle = 0.45;
+    this->normal_throttle = 0.55;
 
     decision_making = DecisionMaking(current_state, this->normal_throttle,
                                 &(this->signs), &(this->pose));

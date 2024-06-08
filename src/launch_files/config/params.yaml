@@ -1,0 +1,3 @@
+ads_process:
+  ros__parameters:
+    dummy_parameter: false

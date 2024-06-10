@@ -24,6 +24,8 @@ PathPlanning::PathPlanning() : rclcpp::Node("path_planning") {
     // CHECK 5 vector initialization is needed
     this->use_sign = true;
     this->use_pose = false;
+
+    this->use_start = true;
     
     // Decision Making Initialization
     VehicleState current_state = VehicleState::Driving;
@@ -35,12 +37,15 @@ PathPlanning::PathPlanning() : rclcpp::Node("path_planning") {
     // Initialization
     this->throttle = 0;
     this->state = 0;
+    this->start_available = 0;
 
     // ROS Subscription
     sign_subscription_ = this->create_subscription<vision_msgs::msg::Classification2D>(
         "/perception/sign", 10, std::bind(&PathPlanning::sign_callback, this,  std::placeholders::_1));
     pose_subscription_ = this->create_subscription<nav_msgs::msg::Odometry>(
         "/piracer/odom", 10, std::bind(&PathPlanning::pose_callback, this,  std::placeholders::_1));
+    start_subscription_ = this->create_subscription<std_msgs::msg::Int8>(
+        "/headunit/start", 10, std::bind(&PathPlanning::start_callback, this,  std::placeholders::_1));
 
     // ROS Publisher
     path_publisher_ = this->create_publisher<nav_msgs::msg::Path>(
@@ -66,12 +71,18 @@ void PathPlanning::pose_callback(const nav_msgs::msg::Odometry::SharedPtr pose_m
     this->pose_msg = pose_msg;
 }
 
+void PathPlanning::start_callback(const std_msgs::msg::Int8::SharedPtr start_msg) {
+    this->start_msg = start_msg;
+}
+
 void PathPlanning::publisher_timer_callback() {
     // Use Message Validation
     if (!this->isUseMessageValid()) {return;}
 
     // Update Using Messages to Decision Making
     this->updateUseMessages();
+
+    if (this->start_available == 0) {std::cout << "Not Ready : " << this->start_available << std::endl; return;}
     
     // Decision Making with Using Messages
     this->decision_making.decide();
@@ -86,13 +97,15 @@ void PathPlanning::publisher_timer_callback() {
 
 bool PathPlanning::isUseMessageValid() {
     if (this->use_sign) {if (!this->sign_msg) { std::cout << "Sign Message Error" << std::endl; return false;}}
-    if (this->use_pose) {if (!this->pose_msg) {return false;}}
+    if (this->use_pose) {if (!this->pose_msg) { std::cout << "Pose Message Error" << std::endl; return false;}}
+    if (this->use_start) {if (!this->start_msg) { std::cout << "HeadUnit Message Error" << std::endl; return false;}}
     return true;
 }
 
 void PathPlanning::updateUseMessages() {
     if (this->use_sign) {this->update_sign();}
     if (this->use_pose) {this->update_pose();}
+    if (this->use_start) {this->update_start();}
 }
 
 void PathPlanning::publish_path() {
@@ -170,3 +183,7 @@ void PathPlanning::addPose(nav_msgs::msg::Path& path_msg, std::vector<double> po
     path_msg.poses.push_back(pose_stamped);
 }
 
+void PathPlanning::update_start() {
+    std::cout << "Start Msg Recieve : " << start_msg->data << std::endl;
+    this->start_available = start_msg->data;
+}

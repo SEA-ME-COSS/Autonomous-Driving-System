@@ -42,13 +42,17 @@ private:
 
     vision_msgs::msg::Classification2D::SharedPtr sign_msg;
     nav_msgs::msg::Odometry::SharedPtr pose_msg;
+    std_msgs::msg::Int8::SharedPtr start_msg;
 
     bool use_sign;
     bool use_pose;
 
+    bool use_start;
+
     std::vector<std::vector<double>> path;
     double throttle;
     int state;
+    int start_available;
 
     double normal_throttle;
 
@@ -56,6 +60,7 @@ private:
 
     rclcpp::Subscription<vision_msgs::msg::Classification2D>::SharedPtr sign_subscription_;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr pose_subscription_;
+    rclcpp::Subscription<std_msgs::msg::Int8>::SharedPtr start_subscription_;
 
     rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_publisher_;
     rclcpp::Publisher<example_interfaces::msg::Float64>::SharedPtr throttle_publisher_;
@@ -65,6 +70,7 @@ private:
 
     void sign_callback(const vision_msgs::msg::Classification2D::SharedPtr sign_msg);
     void pose_callback(const nav_msgs::msg::Odometry::SharedPtr pose_msg);
+    void start_callback(const std_msgs::msg::Int8::SharedPtr start_msg);
 
     void publisher_timer_callback();
 
@@ -76,6 +82,7 @@ private:
 
     void update_sign();
     void update_pose();
+    void update_start();
 
     void addPose(nav_msgs::msg::Path& path_msg, std::vector<double> pose);
 };

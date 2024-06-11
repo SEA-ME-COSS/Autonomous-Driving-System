@@ -1,13 +1,17 @@
 #include "control.hpp"
 
 Control::Control() : rclcpp::Node("vehicle_control") {
-    double k = 1.5;
-    double ks = 70.2;
+    double k = 3.5;
+    double ks = 10.2;
 
     this->controller = Stanley(k, ks);
 
+    this->use_can = false;
+
     // Initialize CAN receiver
-    this->can_sender = std::make_unique<CANSender>("src/stanley/include/stanley/utils/example.dbc", "vcan0");
+    if (this->use_can) {
+        this->can_sender = std::make_unique<CANSender>("src/stanley/include/stanley/utils/example.dbc", "vcan0");
+    }
 
     // Subscribe
     path_subscription_ = this->create_subscription<nav_msgs::msg::Path>(
@@ -84,8 +88,10 @@ void Control::publisher_timer_callback() {
 
     this->publish_drive(this->speedCommand, this->steerCommand);
 
-    this->can_sender->sendSpeedMessage(this->speedCommand, 0);
-    this->can_sender->sendSteerMessage(this->steerCommand, 1);
+    if (this->use_can) {
+        this->can_sender->sendSpeedMessage(this->speedCommand, 0);
+        this->can_sender->sendSteerMessage(this->steerCommand, 1);
+    }
 }
 
 void Control::publish_drive(float speed, float steer) {

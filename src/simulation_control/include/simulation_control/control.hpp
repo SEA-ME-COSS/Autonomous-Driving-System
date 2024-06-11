@@ -35,6 +35,8 @@ private:
     float speedCommand;
     float steerCommand;
 
+    bool use_can;
+
     bool pathValid;
     bool poseValid;
     bool velocityValid;

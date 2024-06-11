@@ -1,0 +1,3 @@
+simulation_ads:
+  ros__parameters:
+    dummy_parameter: false

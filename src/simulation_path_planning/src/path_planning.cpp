@@ -25,7 +25,7 @@ PathPlanning::PathPlanning() : rclcpp::Node("path_planning") {
     this->use_sign = true;
     this->use_pose = false;
 
-    this->use_start = true;
+    this->use_start = false;
     
     // Decision Making Initialization
     VehicleState current_state = VehicleState::Driving;
@@ -82,7 +82,7 @@ void PathPlanning::publisher_timer_callback() {
     // Update Using Messages to Decision Making
     this->updateUseMessages();
 
-    if (this->start_available == 0) {std::cout << "Not Ready : " << this->start_available << std::endl; return;}
+    if (this->use_start && this->start_available == 0) {std::cout << "Not Ready : " << this->start_available << std::endl; return;}
     
     // Decision Making with Using Messages
     this->decision_making.decide();

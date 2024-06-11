@@ -35,7 +35,7 @@ DecisionMaking::DecisionMaking(VehicleState current_state, float normal_throttle
 
     // Initialization
     this->crosswalksign_mindistance = 50.0;
-    this->crosswalksign_ignore = 6;
+    this->crosswalksign_ignore = 8;
 
     this->rotarysign_mindistance = 30.0;
     this->rotarysign_ignore = 9;

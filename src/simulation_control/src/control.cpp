@@ -2,7 +2,7 @@
 
 Control::Control() : rclcpp::Node("vehicle_control") {
     double k = 3.5;
-    double ks = 10.2;
+    double ks = 14.2;
 
     this->controller = Stanley(k, ks);
 

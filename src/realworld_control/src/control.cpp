@@ -1,8 +1,8 @@
 #include "control.hpp"
 
 Control::Control() : rclcpp::Node("vehicle_control") {
-    double k = 3.5;
-    double ks = 14.2;
+    double k = 2.5;
+    double ks = 18.2;
 
     this->controller = Stanley(k, ks);
 

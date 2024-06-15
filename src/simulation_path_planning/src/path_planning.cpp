@@ -2,15 +2,15 @@
 
 PathPlanning::PathPlanning() : rclcpp::Node("path_planning") {
     // Load Graph and Waypoints
-    std::string nodes_file_path = "src/hybrid_a_star/include/hybrid_a_star/globalmap/parsinginfo.txt";
-    std::string points_file_path = "src/hybrid_a_star/include/hybrid_a_star/globalmap/waypoints.txt";
-    std::string points_set_file_path = "src/hybrid_a_star/include/hybrid_a_star/globalmap/waypoints-set.txt";
+    std::string nodes_file_path = "src/simulation_path_planning/include/simulation_path_planning/globalmap/parsinginfo.txt";
+    std::string points_file_path = "src/simulation_path_planning/include/simulation_path_planning/globalmap/waypoints.txt";
+    std::string points_set_file_path = "src/simulation_path_planning/include/simulation_path_planning/globalmap/waypoints-set.txt";
 
     std::vector<std::array<int, 3>> waypoints = load_waypoints(nodes_file_path, points_file_path);
     std::vector<std::array<int, 3>> waypoints_set = load_waypoints(nodes_file_path, points_set_file_path);
 
     // Load and Configure Map
-    std::string mapdata_file_path = "src/hybrid_a_star/include/hybrid_a_star/globalmap/flipped-track.txt";
+    std::string mapdata_file_path = "src/simulation_path_planning/include/simulation_path_planning/globalmap/flipped-track.txt";
     double resolution = 0.77;
     this->map = new Map(mapdata_file_path, resolution, waypoints_set);
 
@@ -25,7 +25,7 @@ PathPlanning::PathPlanning() : rclcpp::Node("path_planning") {
     this->use_sign = true;
     this->use_pose = false;
 
-    this->use_start = false;
+    this->use_start = true;
     
     // Decision Making Initialization
     VehicleState current_state = VehicleState::Driving;

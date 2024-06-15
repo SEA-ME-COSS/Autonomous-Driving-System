@@ -9,8 +9,25 @@
 
 # Introduction
 
-> ROS2 foxy, Qt, Yocto, Gazebo
-> 
+<table border="0" rules="none">
+<tr border="0">
+    <td width="280" height="200" align="center">
+        <a href="#">
+            <img alt="Yocto Logo" src="/media/logo/yocto-logo.png">
+        </a>
+    </td>
+    <td width="280" height="200" align="center">
+        <a href="#">
+            <img alt="Qt Logo" src="/media/logo/ros2-foxy.png">
+        </a>
+    </td>
+    <td width="350" height="200" align="center">
+        <a href="#">
+            <img alt="Covesa Logo" src="/media/logo/gazebo_simulator.png">
+        </a>
+    </td>
+</tr>
+</table>
 
 This project involves an autonomous driving project using piracer.
 

@@ -89,11 +89,15 @@ After that, install dependencies.
 
 ### Real-World
 
-> Hardware Setting
-> 
+For more detailed information, refer to the following pages.
 
-> Software Setting
-> 
+- [ECU-Core](https://github.com/SEA-ME-COSS/ECU-Core.git)
+- [ECU-Control](https://github.com/SEA-ME-COSS/ECU-Control.git)
+- [ECU-HeadUnit](https://github.com/SEA-ME-COSS/ECU-HeadUnit.git)
+- [Localization](https://github.com/SEA-ME-COSS/Localization.git)
+- [Perception](https://github.com/SEA-ME-COSS/Perception.git)
+- [PathPlanning](https://github.com/SEA-ME-COSS/PathPlanning.git)
+- [Control](https://github.com/SEA-ME-COSS/Control.git)
 
 # Usage
 

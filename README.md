@@ -39,8 +39,7 @@ Ultimately, we integrated with [In-Vehicle Infotainment](https://github.com/SEA-
 
 # Architecture
 
-> Architecture
-> 
+<img src=/media/diagram/software-architecture.png alt="software_architecture" width="100%" height="100%"/>
 
 # Setting
 

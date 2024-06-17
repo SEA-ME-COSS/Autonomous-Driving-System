@@ -4,8 +4,7 @@
 
 # Result
 
-> Insert Video
-> 
+https://github.com/SEA-ME-COSS/Autonomous-Driving-System/assets/138571365/e43ceb95-8b2b-4b29-8823-91352cc73292
 
 # Introduction
 

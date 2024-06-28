@@ -10,19 +10,24 @@ https://github.com/SEA-ME-COSS/Autonomous-Driving-System/assets/138571365/e43ceb
 
 <table border="0" rules="none">
 <tr border="0">
-    <td width="280" height="200" align="center">
+    <td width="250" height="200" align="center">
         <a href="#">
             <img alt="Yocto Logo" src="/media/logo/yocto-logo.png">
         </a>
     </td>
-    <td width="280" height="200" align="center">
+    <td width="250" height="200" align="center">
         <a href="#">
             <img alt="Qt Logo" src="/media/logo/ros2-foxy.png">
         </a>
     </td>
-    <td width="350" height="200" align="center">
+    <td width="320" height="200" align="center">
         <a href="#">
             <img alt="Covesa Logo" src="/media/logo/gazebo_simulator.png">
+        </a>
+    </td>
+    <td width="200" height="200" align="center">
+        <a href="#">
+            <img alt="Covesa Logo" src="/media/logo/mosquitto-mqtt.png">
         </a>
     </td>
 </tr>
@@ -35,6 +40,8 @@ We chose ROS2 as the middleware, and the basic structure consists of Perception,
 To facilitate individual testing, we implemented the virtual environment in Gazebo and also conducted real vehicle tests.
 
 Ultimately, we integrated with [In-Vehicle Infotainment](https://github.com/SEA-ME-COSS/In-Vehicle-Infotainment.git) to combine the autonomous driving system with the distributed embedded system.
+
+We also provide OTA service so that users can update HeadUnit using MQTT.
 
 # Architecture
 
@@ -94,10 +101,12 @@ For more detailed information, refer to the following pages.
 - [ECU-Core](https://github.com/SEA-ME-COSS/ECU-Core.git)
 - [ECU-Control](https://github.com/SEA-ME-COSS/ECU-Control.git)
 - [ECU-HeadUnit](https://github.com/SEA-ME-COSS/ECU-HeadUnit.git)
+- [Yocto_meta-sdv](https://github.com/SEA-ME-COSS/meta-sdv/tree/main)
 - [Localization](https://github.com/SEA-ME-COSS/Localization.git)
 - [Perception](https://github.com/SEA-ME-COSS/Perception.git)
 - [PathPlanning](https://github.com/SEA-ME-COSS/PathPlanning.git)
 - [Control](https://github.com/SEA-ME-COSS/Control.git)
+- [OTA](https://github.com/SEA-ME-COSS/OTA_Application)
 
 # Usage
 
@@ -126,6 +135,7 @@ ros2 launch ads_launch simulation_ads.launch.py
 - CAN specification documents: http://esd.cs.ucr.edu/webres/can20.pdf
 - ROS2 foxy. https://docs.ros.org/en/foxy/index.html
 - Gazebo. https://gazebosim.org/home
+- Mosquitto MQTT. https://mosquitto.org/
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
